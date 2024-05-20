@@ -280,7 +280,12 @@ class MyApp : Application() {
 interface IApplication {
     fun onCreate(application: Application)
 }
-
+// 在各自 module 下实现这个接口
+class UserApplication:IApplication {
+    override fun onCreate(application: Application) {
+        Log.e("IApplication",""+UserApplication::class.java.name)
+    }
+}
 object CollectApp {
     private val allIApplication = mutableSetOf<IApplication>()
 
