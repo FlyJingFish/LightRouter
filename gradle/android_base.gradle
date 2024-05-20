@@ -1,0 +1,26 @@
+apply plugin: "com.android.library"
+apply plugin: "org.jetbrains.kotlin.android"
+android {
+    compileSdk rootProject.ext.sdkVersion
+
+    defaultConfig {
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.sdkVersion
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+dependencies {
+    compileOnly('androidx.appcompat:appcompat'){
+        version {
+            strictly '1.6.1' // Will make sure that library uses that version in your build
+        }
+    }
+}
+
+
