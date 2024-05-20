@@ -92,7 +92,7 @@ dependencies {
 
 #### 示例
 
-- 配置页面
+- 一、配置页面
 
 ```kotlin
 // activity 
@@ -217,7 +217,7 @@ class MyApp : Application() {
 
 ```
 
-#### 拦截器的使用
+#### 二、拦截器的使用
 
 - 定义拦截器
 ```kotlin
@@ -266,7 +266,7 @@ class MyApp : Application() {
 
 ```
 
-#### 为每个 module 配置 `伪Application`
+#### 三、为每个 module 配置 `伪Application`
 
 ```kotlin
 // 自己定义一个 IApplication 
@@ -305,7 +305,7 @@ class MyApp : Application() {
 }
 ```
 
-#### 暴露服务
+#### 四、暴露服务
 
 - 定义接口
 
