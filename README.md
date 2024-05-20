@@ -170,7 +170,7 @@ val fragment : Fragment = `LibUser$$Router`.newInstanceForUser_UserFragment("lal
 
 ```
 
-**手动按模块去加载页面，减少初始化**
+**按模块去加载页面，减少初始化**
 
 ```kotlin
 // builder 第一个参数传 module 名，这个名来自于帮助类 `LibUser$$Router` 的前半截 
