@@ -8,8 +8,8 @@
 
 #### 当前项目是结合和 [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP) 和 [ModuleCommunication](https://github.com/FlyJingFish/ModuleCommunication)来使用的 ，本文不具体介绍这两个框架其他的用法，旨在介绍如何利用这两个框架配置出 类似于 ARouter 等框架的用法，如有需要点击下方链接可查看
 
-- [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP)
-- [ModuleCommunication](https://github.com/FlyJingFish/ModuleCommunication)
+- [AndroidAOP 面向切面编程](https://github.com/FlyJingFish/AndroidAOP)
+- [ModuleCommunication 模块通信](https://github.com/FlyJingFish/ModuleCommunication)
 
 #### 这两者结合使用，可具备 Router 的以下几个功能
 
