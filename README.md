@@ -6,10 +6,17 @@
 [![GitHub license](https://img.shields.io/github/license/FlyJingFish/LightRouter.svg)](https://github.com/FlyJingFish/LightRouter/blob/master/LICENSE)
 
 
-#### 当前项目是结合和 [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP) 和 [ModuleCommunication](https://github.com/FlyJingFish/ModuleCommunication)来使用的 ，本文不具体介绍该如何使用这两个框架更多的用法，旨在介绍如何利用这两个框架配置出 类似于 ARouter 等框架的用法，如有需要点击下方链接可查看
+#### 当前项目是结合和 [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP) 和 [ModuleCommunication](https://github.com/FlyJingFish/ModuleCommunication)来使用的 ，本文不具体介绍这两个框架其他的用法，旨在介绍如何利用这两个框架配置出 类似于 ARouter 等框架的用法，如有需要点击下方链接可查看
 
 - [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP)
 - [ModuleCommunication](https://github.com/FlyJingFish/ModuleCommunication)
+
+#### 这两者结合使用，可具备 Router 的以下几个功能
+
+- 基础的 Activity 跳转，Fragment 的获取
+- 跳转页面中间的拦截器
+- 解耦 各个 module 的 `伪Application` 
+- 暴露服务
 
 ## 使用步骤
 
