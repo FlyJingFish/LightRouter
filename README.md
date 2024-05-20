@@ -143,38 +143,42 @@ class UserFragment : Fragment() {
 
 - 在其他 module 调用
 
+跳转 Activity 
+
 ```kotlin
-class LoginActivity: AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        val userHelper = ImplementClassUtils.getSingleInstance<UserHelper>(UserHelper::class)
-        val user = userHelper.getUser()
-        binding.btnGo.setOnClickListener {
-            //在 module-communication-route 可以使用路径跳转
-            ModuleRoute.builder("user/UserActivity")
-                            .putValue("params1","lalla")
-                            .putValue("params2",user)
-                            .go(this)
+//在 module-communication-route 可以使用路径跳转
+ModuleRoute.builder("user/UserActivity")
+    .putValue("params1","lalla")
+    .putValue("params2",user)
+    .go(this)
 
-            //在自己的 module 下也可使用帮助类，帮助类也可跨模块调用需要使用 ModuleCommunication 的通信功能
-            `LibUser$$Router`.goUser_UserActivity(this,"hahah",user)
-        }
+//在自己的 module 下也可使用帮助类，帮助类也可跨模块调用需要使用 ModuleCommunication 的通信功能
+`LibUser$$Router`.goUser_UserActivity(this,"hahah",user)
 
-        binding.btnGoFragment.setOnClickListener {
-            //在 module-communication-route 可以使用路径拿到 class ，反射新建fragment对象
-            val clazz = ModuleRoute.builder("user/UserFragment")
-                            .getClassByPath()
-            val fragment : Fragment = clazz?.getDeclaredConstructor()?.newInstance() as Fragment
-            //在自己的 module 下也可使用帮助类，帮助类也可跨模块调用需要使用 ModuleCommunication 的通信功能
-            val fragment : Fragment = `LibUser$$Router`.newInstanceForUser_UserFragment("lalala",user) as Fragment
-            supportFragmentManager.beginTransaction().replace(R.id.container,fragment).commit()
-        }
+```
 
-        Log.e("user",""+user)
-    }
-}
+获取 Fragment
+
+```kotlin
+//在 module-communication-route 可以使用路径拿到 class ，反射新建fragment对象
+val clazz = ModuleRoute.builder("user/UserFragment")
+    .getClassByPath()
+val fragment : Fragment = clazz?.getDeclaredConstructor()?.newInstance() as Fragment
+
+//在自己的 module 下也可使用帮助类，帮助类也可跨模块调用需要使用 ModuleCommunication 的通信功能
+val fragment : Fragment = `LibUser$$Router`.newInstanceForUser_UserFragment("lalala",user) as Fragment
+
+```
+
+**手动按模块去加载页面，减少初始化**
+
+```kotlin
+// builder 第一个参数传 module 名，这个名来自于帮助类 `LibUser$$Router` 的前半截 
+ModuleRoute.builder("LibUser","user/UserActivity")
+    .putValue("params1","lalla")
+    .putValue("params2",user)
+    .go(this)
+
 ```
 
 - 想要让 `ModuleRoute` 起作用，还需配置以下信息
