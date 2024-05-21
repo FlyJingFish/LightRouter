@@ -6,7 +6,7 @@
 [![GitHub license](https://img.shields.io/github/license/FlyJingFish/LightRouter.svg)](https://github.com/FlyJingFish/LightRouter/blob/master/LICENSE)
 
 
-#### 当前项目是结合和 [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP) 和 [ModuleCommunication](https://github.com/FlyJingFish/ModuleCommunication)来使用的 ，本文不具体介绍这两个框架其他的用法，旨在介绍如何利用这两个框架配置出 类似于 ARouter 等框架的用法，如有需要点击下方链接可查看
+#### 当前项目是结合和 [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP) 和 [ModuleCommunication](https://github.com/FlyJingFish/ModuleCommunication)来使用的,主打一个轻量易用 ，本文不具体介绍这两个框架其他的用法，旨在介绍如何利用这两个框架配置出 类似于 ARouter 等框架的用法，如有需要点击下方链接可查看
 
 - [AndroidAOP 面向切面编程](https://github.com/FlyJingFish/AndroidAOP)
 - [ModuleCommunication 模块通信](https://github.com/FlyJingFish/ModuleCommunication)
@@ -26,11 +26,13 @@
 
 1、在 **项目根目录** 的 ```build.gradle``` 里依赖插件
 
+新版本写法
+
 ```gradle
 buildscript {
     dependencies {
         //必须项 👇
-        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.1.6'
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.1.7'
     }
 }
 plugins {
@@ -39,6 +41,25 @@ plugins {
     //必须项 👇需要配合 AndroidAOP 使用
     id "io.github.FlyJingFish.AndroidAop.android-aop" version "1.8.2" apply true
 }
+```
+
+或老版本写法
+
+```gradle
+buildscript {
+    dependencies {
+        //必须项 👇
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.1.7'
+        //必须项 👇
+        classpath 'io.github.FlyJingFish.AndroidAop:android-aop-plugin:1.8.2'
+    }
+}
+plugins {
+    //必须项 👇下边版本号根据你项目的 Kotlin 版本决定👇
+    id 'com.google.devtools.ksp' version '1.8.10-1.0.9' apply false
+}
+// 👇加上这句自动为所有module“预”配置debugMode
+apply plugin: "android.aop"
 ```
 
 [Kotlin 和 KSP Github 的匹配版本号列表](https://github.com/google/ksp/releases)
@@ -79,13 +100,13 @@ dependencies {
     implementation 'io.github.FlyJingFish.AndroidAop:android-aop-annotation:1.8.2'
     
     //使用路径的方式跳转则必须添加（使用通信module的则不加也可以）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.1.6'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.1.7'
     
     //这一项在你配置 communication.export 时就已经自动引入，如没有配置则需引入
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.1.6'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.1.7'
     
     //使用拦截器（可选项）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.1.6'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.1.7'
 }
 ```
 
@@ -103,7 +124,7 @@ dependencies {
 
 ```kotlin
 // activity 
-@Route("user/UserActivity")
+@Route("/user/UserActivity")
 class UserActivity : AppCompatActivity() {
 
     @delegate:RouteParams("params1")
@@ -124,7 +145,7 @@ class UserActivity : AppCompatActivity() {
 }
 
 //fragment
-@Route("user/UserFragment")
+@Route("/user/UserFragment")
 class UserFragment : Fragment() {
     @delegate:RouteParams("params1")
     val params1 :String ? by lazy(LazyThreadSafetyMode.NONE) {
@@ -224,7 +245,52 @@ class MyApp : Application() {
 
 ```
 
-#### 二、拦截器的使用
+#### 二、通过URL跳转
+
+```kotlin
+class SchemeDistributionActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val uri = intent.data
+        uri?.let {
+            ModuleRoute.builder(it)?.go()
+        }
+        finish()
+    }
+}
+```
+
+在 AndroidManifest.xml 中配置
+
+```xml
+<activity android:name=".SchemeDistributionActivity"
+    android:exported="true">
+    <!-- Scheme -->
+    <intent-filter>
+        <data
+            android:host="test.flyjingfish.com"
+            android:scheme="lightrouter"/>
+
+        <action android:name="android.intent.action.VIEW"/>
+
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+    </intent-filter>
+</activity>
+```
+
+> ModuleRoute 会自动解析 uri ，会根据您当初设置的各项参数去解析跳转页面的参数，并且不限制类型，除了8种基本数据类型和String类型之外，其他的对象类型你只需要把对象数据转化为Json数据即可，例如
+
+```
+<script type="text/javascript">
+    function onClick() {
+        window.location.href =
+            "lightrouter://test.flyjingfish.com/user/DetailActivity?age=10&name=hahahaha&aChar=a&user={\"id\":\"1111\",\"name\":\"哈哈😄\"}"
+    }
+</script>
+```
+
+#### 三、拦截器的使用
 
 - 定义拦截器
 ```kotlin
@@ -273,7 +339,7 @@ class MyApp : Application() {
 
 ```
 
-#### 三、为每个 module 配置 `伪Application`
+#### 四、为每个 module 配置 `伪Application`
 
 ```kotlin
 // 自己定义一个 IApplication 
@@ -317,7 +383,7 @@ class MyApp : Application() {
 }
 ```
 
-#### 四、暴露服务
+#### 五、暴露服务
 
 - 定义接口
 
@@ -359,6 +425,18 @@ object CollectApp {
     fun collectBindClass(sub: BindClass<*>){
         Log.e("CollectIntercept","collectBindClass=$sub")
         ImplementClassUtils.addBindClass(sub)
+    }
+    
+    fun init(){
+        
+    }
+}
+//初始化
+class MyApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        //一键初始化所有需要的信息
+        CollectApp.init()
     }
 }
 ```
