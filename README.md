@@ -14,9 +14,11 @@
 #### 这两者结合使用，可具备 Router 的以下几个功能
 
 - 基础的 Activity 跳转，Fragment 的获取
+- 通过 Url 打开页面
 - 跳转页面中间的拦截器
 - 解耦 各个 module 的 `伪Application` 
 - 暴露服务
+
 
 ## 使用步骤
 
