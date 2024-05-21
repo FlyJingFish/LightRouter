@@ -24,6 +24,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.SchemeDistributionActivity"
+            android:exported="true">
+            <!-- Scheme -->
+            <intent-filter>
+                <data
+                    android:host="test.flyjingfish.com"
+                    android:scheme="lightrouter"/>
+
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

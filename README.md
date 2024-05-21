@@ -504,6 +504,8 @@ object CollectApp {
         allIApplication.forEach {
             it.onCreate(application)
         }
+        //设置这一项跳转页面可以不需要上下文
+        ModuleRoute.setApplication(application)
     }
 }
 //初始化
