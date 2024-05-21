@@ -175,7 +175,7 @@ class UserFragment : Fragment() {
 
 ```kotlin
 //在 module-communication-route 可以使用路径跳转
-ModuleRoute.builder("user/UserActivity")
+ModuleRoute.builder("/user/UserActivity")
     .putValue("params1","lalla")
     .putValue("params2",user)
     .go(this)
@@ -189,7 +189,7 @@ ModuleRoute.builder("user/UserActivity")
 
 ```kotlin
 //在 module-communication-route 可以使用路径拿到 class ，反射新建fragment对象
-val clazz = ModuleRoute.builder("user/UserFragment")
+val clazz = ModuleRoute.builder("/user/UserFragment")
     .getClassByPath()
 val fragment : Fragment = clazz?.getDeclaredConstructor()?.newInstance() as Fragment
 
@@ -202,7 +202,7 @@ val fragment : Fragment = `LibUser$$Router`.newInstanceForUser_UserFragment("lal
 
 ```kotlin
 // builder 第一个参数传 module 名，这个名来自于帮助类 `LibUser$$Router` 的前半截 
-ModuleRoute.builder("LibUser","user/UserActivity")
+ModuleRoute.builder("LibUser","/user/UserActivity")
     .putValue("params1","lalla")
     .putValue("params2",user)
     .go(this)
