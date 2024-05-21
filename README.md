@@ -194,7 +194,7 @@ val clazz = ModuleRoute.builder("/user/UserFragment")
 val fragment : Fragment = clazz?.getDeclaredConstructor()?.newInstance() as Fragment
 
 //在自己的 module 下也可使用帮助类，帮助类也可跨模块调用需要使用 ModuleCommunication 的通信功能
-val fragment : Fragment = `LibUser$$Router`.newInstanceForUser_UserFragment("lalala",user) as Fragment
+val fragment : Fragment = `LibUser$$Router`.newUser_UserFragment("lalala",user) as Fragment
 
 ```
 
