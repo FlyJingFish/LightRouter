@@ -41,7 +41,7 @@ plugins {
     //必须项 👇下边版本号根据你项目的 Kotlin 版本决定👇
     id 'com.google.devtools.ksp' version '1.8.10-1.0.9' apply false
     //必须项 👇需要配合 AndroidAOP 使用
-    id "io.github.FlyJingFish.AndroidAop.android-aop" version "1.8.2" apply true
+    id 'io.github.FlyJingFish.AndroidAop.android-aop' version '1.8.2' apply true
 }
 ```
 
