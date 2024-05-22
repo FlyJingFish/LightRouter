@@ -525,7 +525,7 @@ class MyApp : Application() {
 混淆规则遵循以下两个库的混淆规则：
 
 - [ModuleCommunication](https://github.com/FlyJingFish/ModuleCommunication?tab=readme-ov-file#%E6%B7%B7%E6%B7%86%E8%A7%84%E5%88%99)
-- [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP?tab=readme-ov-file#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
+- [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP?tab=readme-ov-file#%E6%B7%B7%E6%B7%86%E8%A7%84%E5%88%99)
 
 
 ### 最后推荐我写的另外一些库
