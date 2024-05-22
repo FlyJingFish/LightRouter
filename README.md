@@ -19,6 +19,11 @@
 - 解耦 各个 module 的 `伪Application` 
 - 暴露服务
 
+#### 优势所在
+
+- 面向切面编程，探索 [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP) 的**更多功能**，让你代码简洁高级，为你项目赋予高级能力
+- 探索 [ModuleCommunication](https://github.com/FlyJingFish/ModuleCommunication) 的**更多功能**，让 module 之间的通信变得就像在一个 module 一样
+- 结合两个库的功能，可实现纯静态代码，而不用反射。市面上的几乎没有不用反射的 Router 库吧🤔
 
 ## 使用步骤
 
@@ -347,12 +352,12 @@ class MyApp : Application() {
 > 上边的初始化默认用的是 AndroidAOP 的收集直接继承类（并且是不是抽象类的），我们想要动态添加拦截器，就不可直接实现 `RouterIntercept` 接口了，需要在中间加一层，避开这个规则，代码如下：
 
 ```kotlin
-//定一个中间的 interface 类（或 abstract class），不可用 class，否则这个类会被认为是拦截器
+//定一个中间的 interface 类（或 abstract class），不可用 class，否则这个类会被认为是固有拦截器
 interface IgnoreIntercept:RouterIntercept {
 }
 
 //动态添加就用 IgnoreIntercept
-RouterInterceptManager.addIntercept(object :IgnoreIntercept{
+val intercept = object :IgnoreIntercept{
     override fun onIntercept(proceed: Proceed) {
         proceed.proceed()
     }
@@ -361,7 +366,11 @@ RouterInterceptManager.addIntercept(object :IgnoreIntercept{
         return 2
     }
 
-})
+}
+//动态添加拦截器
+RouterInterceptManager.addIntercept(intercept)
+//动态删除拦截器
+RouterInterceptManager.removeIntercept(intercept)
 ```
 
 #### 四、为每个 module 配置 `伪Application`
