@@ -3,9 +3,13 @@ package com.flyjingfish.lightrouter.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
+import com.flyjingfish.lightrouter.IgnoreIntercept
 import com.flyjingfish.lightrouter.databinding.ActivityMainBinding
 import com.flyjingfish.login.LoginActivity
+import com.flyjingfish.module_communication_intercept.RouterInterceptManager
+import com.flyjingfish.module_communication_intercept.intercept.Proceed
 
 
 class MainActivity : ComponentActivity() {
@@ -25,6 +29,19 @@ class MainActivity : ComponentActivity() {
                 val componentName = intent.resolveActivity(packageManager)
                 startActivity(Intent.createChooser(intent, "请选择浏览器"))
             }
+        }
+        binding.btnAddIntercept.setOnClickListener {
+            RouterInterceptManager.addIntercept(object :IgnoreIntercept{
+                override fun onIntercept(proceed: Proceed) {
+                    Log.e("onIntercept","--MainActivity--${proceed.path},params = ${proceed.paramsMap},byPath = ${proceed.byPath}")
+                    proceed.proceed()
+                }
+
+                override fun order(): Int {
+                    return 2
+                }
+
+            })
         }
     }
 }
