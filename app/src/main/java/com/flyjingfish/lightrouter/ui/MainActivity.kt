@@ -9,7 +9,7 @@ import com.flyjingfish.lightrouter.IgnoreIntercept
 import com.flyjingfish.lightrouter.databinding.ActivityMainBinding
 import com.flyjingfish.login.LoginActivity
 import com.flyjingfish.module_communication_intercept.RouterInterceptManager
-import com.flyjingfish.module_communication_intercept.intercept.Proceed
+import com.flyjingfish.module_communication_intercept.intercept.InterceptPoint
 
 
 class MainActivity : ComponentActivity() {
@@ -32,9 +32,9 @@ class MainActivity : ComponentActivity() {
         }
         binding.btnAddIntercept.setOnClickListener {
             RouterInterceptManager.addIntercept(object :IgnoreIntercept{
-                override fun onIntercept(proceed: Proceed) {
-                    Log.e("onIntercept","--MainActivity--${proceed.path},params = ${proceed.paramsMap},byPath = ${proceed.byPath}")
-                    proceed.proceed()
+                override fun onIntercept(point: InterceptPoint) {
+                    Log.e("onIntercept","--MainActivity--${point.path},params = ${point.paramsMap},byPath = ${point.byPath}")
+                    point.proceed()
                 }
 
                 override fun order(): Int {

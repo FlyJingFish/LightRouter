@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import com.flyjingfish.login.databinding.ActivityLoginBinding
 import com.flyjingfish.module_communication_annotation.ImplementClassUtils
 import com.flyjingfish.module_communication_route.ModuleRoute
+import java.io.Serializable
+
 //import com.flyjingfish.user.UserHelper
 
 class LoginActivity: AppCompatActivity() {
@@ -20,7 +22,7 @@ class LoginActivity: AppCompatActivity() {
 //            `LibUser$$Router`.goUser_UserActivity(this,"hahah",null)
             ModuleRoute.builder("user/UserActivity")
                 .putValue("params1","lalla")
-                .putValue("params2",null)
+                .putValue("params2",null as Serializable?)
                 .go(this)
 
         }
