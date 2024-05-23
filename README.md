@@ -355,7 +355,8 @@ class MyApp : Application() {
 > 上边的初始化默认用的是 AndroidAOP 的收集直接继承类（并且不是抽象类的），我们想要动态添加拦截器，就不可直接实现 `RouterIntercept` 接口了，需要在中间加一层，避开这个规则，代码如下：
 
 ```kotlin
-//定一个中间的 interface 类（或 abstract class），不可用 class，否则这个类会被认为是固有拦截器（即使你动态的创建对象也一样的）
+//定一个中间的 interface 类（或 abstract class），不可用 class，
+//否则这个类会被认为是固有拦截器（即使你动态的创建对象也一样的）
 interface IgnoreIntercept:RouterIntercept {
 }
 
