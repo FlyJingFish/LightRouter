@@ -301,15 +301,17 @@ class SchemeDistributionActivity : ComponentActivity() {
 #### 三、拦截器的使用
 
 - 定义拦截器
+
 ```kotlin
 
 class UserIntercept : RouterIntercept {
     //跳转页面时会先进入这里
-    override fun onIntercept(proceed: Proceed) {
-        Log.e("onIntercept","--UserIntercept--${proceed.path},params = ${proceed.paramsMap},byPath = ${proceed.byPath}")
+    override fun onIntercept(point: InterceptPoint) {
+        Log.e("onIntercept","--UserIntercept--${point.path},params = ${point.paramsMap},byPath = ${point.byPath}")
         //调用下边这句才会进入下一个拦截器或跳转页面，支持异步获取网络数据后再调用
-        proceed.proceed()
+        point.proceed()
     }
+
     //返回序号，存在多个拦截器时会按照这个顺序依次进入拦截器
     override fun order(): Int {
         return 2
@@ -359,8 +361,8 @@ interface IgnoreIntercept:RouterIntercept {
 
 //动态添加就用 IgnoreIntercept
 val intercept = object :IgnoreIntercept{
-    override fun onIntercept(proceed: Proceed) {
-        proceed.proceed()
+    override fun onIntercept(point: InterceptPoint) {
+        point.proceed()
     }
 
     override fun order(): Int {
