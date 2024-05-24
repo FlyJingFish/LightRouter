@@ -25,6 +25,7 @@
 - 面向切面编程，探索 [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP) 的**更多功能**，让你代码简洁高级，为你项目赋予高级能力
 - 探索 [ModuleCommunication](https://github.com/FlyJingFish/ModuleCommunication) 的**更多功能**，让 module 之间的通信变得就像在一个 module 一样
 - 结合两个库的功能，可实现纯静态代码，而不用反射。市面上的几乎没有不用反射的 Router 库吧🤔
+- 够轻量，虽然轻量，但主要的Router功能基本都有了。不要看到轻量就觉得可能不好用、bug多。需要知道不一定代码多就好用，而且那么多代码你不一定都用得到
 
 ## 使用步骤
 
