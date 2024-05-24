@@ -482,7 +482,59 @@ class MyApp : Application() {
 }
 ```
 
-#### 六、集中配置初始化
+### 六、自定义降级策略
+
+
+- 定义降级策略
+
+```kotlin
+
+class UserLost : RouterLost{
+    //跳转页面时找不到页面会进入这里
+    override fun onLost(lostPoint: LostPoint) {
+        Log.e("onLost","--UserLost--")
+        //调用下边这句才会进入下一个降级策略类，不调用表示消耗掉此次事件，支持异步获取网络数据后再调用
+        lostPoint.proceed()
+    }
+    //返回序号，存在多个降级策略类时会按照这个顺序依次进入
+    override fun order(): Int {
+        return 2
+    }
+}
+```
+- 初始化降级策略
+```kotlin
+object CollectApp {
+    private val allRouterLost = mutableSetOf<RouterLost>()
+
+    /**
+     * 这一步才可以收集到所有的降级处理器
+     */
+    @AndroidAopCollectMethod
+    @JvmStatic
+    fun collectRouterLost(sub: RouterLost){
+        Log.e("CollectIntercept","collectRouterLost=$sub")
+        allRouterLost.add(sub)
+    }
+
+    fun onCreate(application: Application){
+        Log.e("CollectIntercept","getAllRouterIntercept-size=${allRouterIntercept.size}")
+        //设置全部降级策略类
+        RouterLostManager.addAllRouterLost(allRouterLost)
+    }
+}
+//初始化
+class MyApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        //一键初始化所有需要的信息
+        CollectApp.onCreate(this)
+    }
+}
+
+```
+
+#### 七、集中配置初始化
 
 > 你可以看到上边所有功能都写了要初始化，其实这些初始化都可以放在一个类里边去，这样便于集中管理。另外说明一点，这样写完之后，之后你再加任何 `@Route`、`拦截器`、`伪Application`、`非反射服务`，都是自动生效的
 
@@ -491,6 +543,7 @@ object CollectApp {
     private val allRouterIntercept = mutableSetOf<RouterIntercept>()
     private val allIApplication = mutableSetOf<IApplication>()
     private val allRouteClazz = mutableSetOf<BaseRouterClass>()
+    private val allRouterLost = mutableSetOf<RouterLost>()
 
     /**
      * 这一步才可以收集到所有的拦截器
@@ -533,6 +586,16 @@ object CollectApp {
         ImplementClassUtils.addBindClass(sub)
     }
 
+    /**
+     * 这一步才可以收集到所有的降级处理器
+     */
+    @AndroidAopCollectMethod
+    @JvmStatic
+    fun collectRouterLost(sub: RouterLost){
+        Log.e("CollectIntercept","collectRouterLost=$sub")
+        allRouterLost.add(sub)
+    }
+
     fun onCreate(application: Application){
         Log.e("CollectIntercept","getAllRouterIntercept-size=${allRouterIntercept.size}")
         //设置全部的拦截器让其起作用
@@ -545,6 +608,8 @@ object CollectApp {
         }
         //设置这一项跳转页面可以不需要上下文
         ModuleRoute.setApplication(application)
+        //设置全部降级策略类
+        RouterLostManager.addAllRouterLost(allRouterLost)
     }
 }
 //初始化
