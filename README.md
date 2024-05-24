@@ -15,6 +15,8 @@
 
 - 基础的 Activity 跳转，Fragment 的获取
 - 可获取封装好的跳转 Activity 的 Intent，你想怎么跳就怎么跳
+- 支持异步跳转 Activity
+- 支持无上下文跳转 Activity
 - 通过 Url 打开页面
 - 跳转页面中间的拦截器
 - 解耦 各个 module 的 `伪Application` 
