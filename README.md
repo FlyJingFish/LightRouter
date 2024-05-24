@@ -200,9 +200,13 @@ ModuleRoute.builder("/user/UserActivity")
 
 ```kotlin
 //在 module-communication-route 可以使用路径拿到 class ，反射新建fragment对象
-val clazz = ModuleRoute.builder("/user/UserFragment")
-    .getClassByPath()
-val fragment : Fragment = clazz?.getDeclaredConstructor()?.newInstance() as Fragment
+val instance : Any = ModuleRoute.builder("/user/UserFragment")
+    .putValue("params1","lalla")
+    .putValue("params2",user)
+    .go()
+instance?.let {
+    val fragment : Fragment = instance as Fragment
+}
 
 //在自己的 module 下也可使用帮助类，帮助类也可跨模块调用需要使用 ModuleCommunication 的通信功能
 val fragment : Fragment = `LibUser$$Router`.newUser_UserFragment("lalala",user) as Fragment
