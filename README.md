@@ -199,7 +199,7 @@ ModuleRoute.builder("/user/UserActivity")
 获取 Fragment
 
 ```kotlin
-//在 module-communication-route 可以使用路径拿到 class ，反射新建fragment对象
+//在 module-communication-route 可以使用路径新建fragment对象，找不到类就会返回 null
 val instance : Any = ModuleRoute.builder("/user/UserFragment")
     .putValue("params1","lalla")
     .putValue("params2",user)
