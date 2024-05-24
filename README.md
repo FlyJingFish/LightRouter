@@ -489,7 +489,7 @@ class MyApp : Application() {
 #### 六、自定义降级策略
 
 
-- 定义降级策略
+- 定义降级策略（支持多个）
 
 ```kotlin
 
