@@ -19,7 +19,8 @@
 - 跳转页面中间的拦截器
 - 解耦 各个 module 的 `伪Application` 
 - 暴露服务
-
+- 自定义降级策略
+  
 #### 优势所在
 
 - 面向切面编程，探索 [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP) 的**更多功能**，让你代码简洁高级，为你项目赋予高级能力
