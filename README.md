@@ -44,7 +44,7 @@
 buildscript {
     dependencies {
         //必须项 👇
-        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.2'
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.3'
     }
 }
 plugins {
@@ -61,7 +61,7 @@ plugins {
 buildscript {
     dependencies {
         //必须项 👇
-        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.2'
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.3'
         //必须项 👇
         classpath 'io.github.FlyJingFish.AndroidAop:android-aop-plugin:1.8.2'
     }
@@ -112,13 +112,13 @@ dependencies {
     implementation 'io.github.FlyHingFish.AndroidAop:android-aop-annotation:1.8.2'
     
     //使用路径的方式跳转则必须添加（使用通信module的则不加也可以）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.2'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.3'
     
     //这一项在你配置 communication.export 时就已经自动引入，如没有配置则需引入
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.2.2'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.2.3'
     
     //使用拦截器（可选项）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.2.2'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.2.3'
 }
 ```
 
@@ -193,6 +193,22 @@ ModuleRoute.builder("/user/UserActivity")
     .putValue("params1","lalla")
     .putValue("params2",user)
     .go(this)
+
+//加上监听
+
+ModuleRoute.builder("user/UserActivity")
+    .putValue("params1","lalla")
+    .putValue("params2",null as Serializable?)
+    //想要自己处理跳转 context.startActivity()
+    .setOnGoActivity(object : OnGoActivity{
+        override fun onGo(context: Context, intent: Intent) {
+        }
+    })
+    .go(this,object :OnNavigationBack{
+        override fun onResult(result: NavigationResult) {
+            //主要是用于跳转是否成功
+        }
+    })
 
 //在自己的 module 下也可使用帮助类，帮助类也可跨模块调用需要使用 ModuleCommunication 的通信功能
 `LibUser$$Router`.goUser_UserActivity(this,"hahah",user)
