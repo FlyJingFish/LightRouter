@@ -44,7 +44,7 @@
 buildscript {
     dependencies {
         //必须项 👇
-        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.3'
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.4'
     }
 }
 plugins {
@@ -61,7 +61,7 @@ plugins {
 buildscript {
     dependencies {
         //必须项 👇
-        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.3'
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.4'
         //必须项 👇
         classpath 'io.github.FlyJingFish.AndroidAop:android-aop-plugin:1.8.2'
     }
@@ -112,13 +112,13 @@ dependencies {
     implementation 'io.github.FlyHingFish.AndroidAop:android-aop-annotation:1.8.2'
     
     //使用路径的方式跳转则必须添加（使用通信module的则不加也可以）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.3'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.4'
     
     //这一项在你配置 communication.export 时就已经自动引入，如没有配置则需引入
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.2.3'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.2.4'
     
     //使用拦截器（可选项）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.2.3'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.2.4'
 }
 ```
 
@@ -195,18 +195,19 @@ ModuleRoute.builder("/user/UserActivity")
     .go(this)
 
 //加上监听
-
 ModuleRoute.builder("user/UserActivity")
     .putValue("params1","lalla")
     .putValue("params2",null as Serializable?)
     //想要自己处理跳转 context.startActivity()
     .setOnGoActivity(object : OnGoActivity{
-        override fun onGo(context: Context, intent: Intent) {
+        override fun onGo(context: Context, intent: Intent):Boolean {
+            //返回true 代表自己处理跳转，返回false 代表自己不处理
+            return false
         }
     })
     .go(this,object :OnNavigationBack{
         override fun onResult(result: NavigationResult) {
-            //主要是用于跳转是否成功
+            //主要是用于跳转是否成功，返回结果是失败就是找不到页面，也就不会回调上边的 OnGoActivity 
         }
     })
 
