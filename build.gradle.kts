@@ -97,7 +97,7 @@ fun updateREADME(readme :String, aopVersionName :String, comVersionName :String)
         "'io.github.FlyJingFish.AndroidAop:android-aop-core:$aopVersionName'"
     )
     text = text.updateText("'io.github.FlyJingFish.AndroidAop:android-aop-annotation:$oldVersionName'",
-        "'io.github.FlyHingFish.AndroidAop:android-aop-annotation:$aopVersionName'"
+        "'io.github.FlyJingFish.AndroidAop:android-aop-annotation:$aopVersionName'"
     )
     text = text.updateText("'io.github.FlyJingFish.AndroidAop:android-aop-processor:$oldVersionName'",
         "'io.github.FlyJingFish.AndroidAop:android-aop-processor:$aopVersionName'"

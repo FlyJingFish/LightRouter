@@ -109,7 +109,7 @@ plugins {
 dependencies {
     //必须项 👇AndroidAOP 提供支持
     implementation 'io.github.FlyJingFish.AndroidAop:android-aop-core:1.8.4'
-    implementation 'io.github.FlyHingFish.AndroidAop:android-aop-annotation:1.8.2'
+    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-annotation:1.8.4'
     
     //使用路径的方式跳转则必须添加（使用通信module的则不加也可以）
     implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.5'
