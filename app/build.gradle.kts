@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
     implementation(libs.appcompat)
+    implementation("io.github.FlyJingFish.OpenImage:OpenImageGlideLib:2.2.2")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
