@@ -42,7 +42,6 @@ class MainActivity : ComponentActivity() {
                 }
 
             })
-            startActivity(Intent(this,ImagesActivity::class.java))
         }
     }
 }
