@@ -44,14 +44,14 @@
 buildscript {
     dependencies {
         //必须项 👇
-        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.5'
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.6'
     }
 }
 plugins {
     //必须项 👇下边版本号根据你项目的 Kotlin 版本决定👇
     id 'com.google.devtools.ksp' version '1.8.10-1.0.9' apply false
     //必须项 👇需要配合 AndroidAOP 使用
-    id 'io.github.FlyJingFish.AndroidAop.android-aop' version '1.8.5' apply true
+    id 'io.github.FlyJingFish.AndroidAop.android-aop' version '1.8.6' apply true
 }
 ```
 
@@ -61,9 +61,9 @@ plugins {
 buildscript {
     dependencies {
         //必须项 👇
-        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.5'
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.6'
         //必须项 👇
-        classpath 'io.github.FlyJingFish.AndroidAop:android-aop-plugin:1.8.5'
+        classpath 'io.github.FlyJingFish.AndroidAop:android-aop-plugin:1.8.6'
     }
 }
 plugins {
@@ -108,17 +108,17 @@ plugins {
 ```gradle
 dependencies {
     //必须项 👇AndroidAOP 提供支持
-    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-core:1.8.5'
-    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-annotation:1.8.5'
+    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-core:1.8.6'
+    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-annotation:1.8.6'
     
     //使用路径的方式跳转则必须添加（使用通信module的则不加也可以）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.5'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.6'
     
     //这一项在你配置 communication.export 时就已经自动引入，如没有配置则需引入
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.2.5'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.2.6'
     
     //使用拦截器（可选项）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.2.5'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.2.6'
 }
 ```
 
