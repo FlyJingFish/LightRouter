@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import androidx.activity.ComponentActivity;
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.flyjingfish.lightrouter.R;
 import com.flyjingfish.lightrouter.databinding.ActivityImagesBinding;
@@ -16,9 +17,8 @@ import com.flyjingfish.openimagelib.listener.OnSelectMediaListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-
+@Route(path = "/test/activity")
 public class ImagesActivity extends ComponentActivity {
 
     private ActivityImagesBinding binding;

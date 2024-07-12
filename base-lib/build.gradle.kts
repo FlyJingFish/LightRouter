@@ -16,7 +16,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     api(libs.androidAop.annotation)
-    api(libs.androidAop.core)
+//    api(libs.androidAop.core)
     api(libs.module.communication.annotation)
     api(libs.module.communication.intercept)
     api(libs.module.communication.route)

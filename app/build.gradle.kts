@@ -21,10 +21,23 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["AROUTER_MODULE_NAME"] = project.name
+            }
+        }
     }
-
+    signingConfigs {
+        create("release"){
+            storeFile = file(rootProject.file("keystore"))
+            storePassword = "123456"
+            keyAlias = "key0"
+            keyPassword = "123456"
+        }
+    }
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -75,4 +88,7 @@ dependencies {
     implementation(project(mapOf("path" to ":lib-user")))
     implementation(project(mapOf("path" to ":lib-login")))
     ksp(libs.androidAop.ksp)
+
+    implementation("com.alibaba:arouter-api:1.5.2")
+    annotationProcessor("com.alibaba:arouter-compiler:1.5.2")
 }

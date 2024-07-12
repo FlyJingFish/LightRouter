@@ -70,6 +70,8 @@ object CollectApp {
         allRouterLost.add(sub)
     }
 
+
+    @MyAnno
     fun onCreate(application: Application){
         Log.e("CollectIntercept","getAllRouterIntercept-size=${allRouterIntercept.size}")
         //设置全部的拦截器让其起作用
