@@ -5,6 +5,9 @@
 [![GitHub issues](https://img.shields.io/github/issues/FlyJingFish/LightRouter.svg)](https://github.com/FlyJingFish/LightRouter/issues)
 [![GitHub license](https://img.shields.io/github/license/FlyJingFish/LightRouter.svg)](https://github.com/FlyJingFish/LightRouter/blob/master/LICENSE)
 
+| AndroidAOP                                                                                                                                                                             |                                                                                                  ModuleCommunication                                                                                                  |  
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| [![Maven central](https://img.shields.io/maven-central/v/io.github.FlyJingFish.AndroidAop/android-aop-plugin)](https://central.sonatype.com/search?q=io.github.FlyJingFish.AndroidAop) | [![Maven central](https://img.shields.io/maven-central/v/io.github.FlyJingFish.ModuleCommunication/module-communication-annotation)](https://central.sonatype.com/search?q=io.github.FlyJingFish.ModuleCommunication) |  
 
 #### 当前项目是结合和 [AndroidAOP](https://github.com/FlyJingFish/AndroidAOP) 和 [ModuleCommunication](https://github.com/FlyJingFish/ModuleCommunication)来使用的,主打一个轻量易用 ，本文不具体介绍这两个框架其他的用法，旨在介绍如何利用这两个框架配置出 类似于 ARouter 等框架的用法，如有需要点击下方链接可查看
 
@@ -44,14 +47,14 @@
 buildscript {
     dependencies {
         //必须项 👇
-        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.6'
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.7'
     }
 }
 plugins {
     //必须项 👇下边版本号根据你项目的 Kotlin 版本决定👇
     id 'com.google.devtools.ksp' version '1.8.10-1.0.9' apply false
     //必须项 👇需要配合 AndroidAOP 使用
-    id 'io.github.FlyJingFish.AndroidAop.android-aop' version '1.9.3' apply true
+    id 'io.github.FlyJingFish.AndroidAop.android-aop' version '1.9.7' apply true
 }
 ```
 
@@ -61,9 +64,9 @@ plugins {
 buildscript {
     dependencies {
         //必须项 👇
-        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.6'
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.7'
         //必须项 👇
-        classpath 'io.github.FlyJingFish.AndroidAop:android-aop-plugin:1.9.3'
+        classpath 'io.github.FlyJingFish.AndroidAop:android-aop-plugin:1.9.7'
     }
 }
 plugins {
@@ -108,17 +111,17 @@ plugins {
 ```gradle
 dependencies {
     //必须项 👇AndroidAOP 提供支持
-    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-core:1.9.3'
-    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-annotation:1.9.3'
+    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-core:1.9.7'
+    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-annotation:1.9.7'
     
     //使用路径的方式跳转则必须添加（使用通信module的则不加也可以）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.6'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.7'
     
     //这一项在你配置 communication.export 时就已经自动引入，如没有配置则需引入
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.2.6'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.2.7'
     
     //使用拦截器（可选项）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.2.6'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.2.7'
 }
 ```
 
