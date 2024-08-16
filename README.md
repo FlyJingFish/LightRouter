@@ -44,7 +44,7 @@
 buildscript {
     dependencies {
         //必须项 👇
-        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.6'
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.8'
     }
 }
 plugins {
@@ -61,7 +61,7 @@ plugins {
 buildscript {
     dependencies {
         //必须项 👇
-        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.6'
+        classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.8'
         //必须项 👇
         classpath 'io.github.FlyJingFish.AndroidAop:android-aop-plugin:2.0.9'
     }
@@ -112,13 +112,13 @@ dependencies {
     implementation 'io.github.FlyJingFish.AndroidAop:android-aop-annotation:2.0.9'
     
     //使用路径的方式跳转则必须添加（使用通信module的则不加也可以）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.6'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.8'
     
     //这一项在你配置 communication.export 时就已经自动引入，如没有配置则需引入
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.2.6'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-annotation:1.2.8'
     
     //使用拦截器（可选项）
-    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.2.6'
+    implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-intercept:1.2.8'
 }
 ```
 
