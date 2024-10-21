@@ -54,7 +54,7 @@ plugins {
     //必须项 👇下边版本号根据你项目的 Kotlin 版本决定👇
     id 'com.google.devtools.ksp' version '1.8.10-1.0.9' apply false
     //必须项 👇需要配合 AndroidAOP 使用
-    id 'io.github.FlyJingFish.AndroidAop.android-aop' version '2.2.3' apply true
+    id 'io.github.FlyJingFish.AndroidAop.android-aop' version '2.2.5' apply true
 }
 ```
 
@@ -66,7 +66,7 @@ buildscript {
         //必须项 👇
         classpath 'io.github.FlyJingFish.ModuleCommunication:module-communication-plugin:1.2.9'
         //必须项 👇
-        classpath 'io.github.FlyJingFish.AndroidAop:android-aop-plugin:2.2.3'
+        classpath 'io.github.FlyJingFish.AndroidAop:android-aop-plugin:2.2.5'
     }
 }
 plugins {
@@ -111,8 +111,8 @@ plugins {
 ```gradle
 dependencies {
     //必须项 👇AndroidAOP 提供支持
-    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-core:2.2.3'
-    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-annotation:2.2.3'
+    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-core:2.2.5'
+    implementation 'io.github.FlyJingFish.AndroidAop:android-aop-annotation:2.2.5'
     
     //使用路径的方式跳转则必须添加（使用通信module的则不加也可以）
     implementation 'io.github.FlyJingFish.ModuleCommunication:module-communication-route:1.2.9'
